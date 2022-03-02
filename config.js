@@ -5,6 +5,7 @@
 
 let fs = require('fs')
 global.owner = ['6289625556161','62896255561613'] // Letakan nomor kamu disini
+global.prems = ['6289625556161','601164215501','60166408295','601161197507','601156232697','601172962735']
 global.APIs = { // API Prefix
   // nama: 'https://website'
   hardianto: 'https://hardianto-chan.herokuapp.com',
@@ -45,6 +46,7 @@ global.packname = 'ZeusBotz'
 global.author = 'ZeusBotz'
 
 global.wait = '「 ⏱️ 」Harap tunggu...'
+global.botwm = 'ZeusBotz'
 global.eror = '「❗」Server ERROR!'
 global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
 global.watermark = '© Zeus Botz' //change the watermark 
