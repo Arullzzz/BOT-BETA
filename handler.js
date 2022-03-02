@@ -92,8 +92,8 @@ module.exports = {
           if (!('autoread' in chat)) chat.autoread = false
           if (!('broadcast' in chat)) chat.broadcast = true
           if (!('badword' in chat)) chat.badword = false
-          if (!('delete' in chat)) chat.delete = false
-          if (!('desc' in chat)) chat.desc = false
+          if (!('delete' in chat)) chat.delete = true
+          if (!('desc' in chat)) chat.desc = true
           if (!('getmsg' in chat)) chat.getmsg = false
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('stiker' in chat)) chat.stiker = false
@@ -110,8 +110,8 @@ module.exports = {
           antiLink: true,
           autoread: false,
           broadcast: true,
-          delete: false,
-          desc: false,
+          delete: true,
+          desc: true,
           getmsg: false,
           expired: 0,
           stiker: false,
@@ -399,55 +399,26 @@ module.exports = {
     switch (action) {
         case 'add':
         case 'remove':
-             if (chat.welcome) {
-          let groupMetadata = await this.groupMetadata(jid)
-          for (let user of participants) {
-            // let pp = './src/avatar_contact.png'
-            let pp = './src/RadBotZ.jpg'
-            let ppgc = './src/RadBotZ.jpg'
-            try {
-              pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
-              ppgc = await uploadImage(await (await fetch(await this.getProfilePicture(jid))).buffer())
-            } catch (e) {
-            } finally {
-              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
-                (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
-              let wel = await new knights.Welcome()
-                .setUsername(this.getName(user))
-                .setGuildName(this.getName(jid))
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://telegra.ph/file/89a6260f0a6720240e698.jpg")
-                .toAttachment()
-
-              let lea = await new knights.Goodbye()
-                .setUsername(this.getName(user))
-                .setGuildName(this.getName(jid))
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://telegra.ph/file/89a6260f0a6720240e698.jpg")
-                .toAttachment()
-
-              this.sendButtonImg(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), text, action === 'add' ? 'Welcome Message' : 'Leave Message', action === 'add' ? 'Welcome👋' : 'Byee👋',action === 'add' ? 'Welcome👋' : 'Byee👋', {
-key: {
-fromMe: false,
-participant: '0@s.whatsapp.net',
-remoteJid: 'status@broadcast'
-},
-message: {
-contactMessage: {
-displayName: this.getName(user),
-vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;WA;;;\nFN:WA\nTEL;type=CELL;type=VOICE;waid=${user.split('@')[0]}:${user.split('@')[0]}\nEND:VCARD`
-}
-}
-}, false, { contextInfo: { mentionedJid: [user]
+          if (chat.welcome) {
+            let groupMetadata = await this.groupMetadata(jid)
+            for (let user of participants) {
+              let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
+              let poi = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
+              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'ようこそ Youkuso, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
+                  (chat.sBye || this.bye || conn.bye || '左様なら Sayounara, @user!')).replace(/@user/g, '@' + user.split`@`[0])
+                let wel = `Welcome Message`
+                let lea = `Group Participant Leave`
+                this.reply(jid, text, 0, { thumbnail: kai, contextInfo: {
+                mentionedJid: [user],
+                externalAdReply: {
+                  mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+                  title: action === 'add' ? wel : lea,
+                  body: 'R-Txzy',
+                  thumbnail: poi
                 }
-              })
+              }}) 
             }
           }
-        }
           break
       case 'promote':
         text = (chat.sPromote || this.spromote || conn.spromote || '@user sekarang Admin')
@@ -517,9 +488,7 @@ global.dfail = (type, m, conn) => {
     unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar R-Txzy.19*',
     nsfw: 'NSFW doesnt active.\nNSFW tidak aktif.'
   }[type]
-  if (msg) return conn.sendButton(m.chat, msg, watermark, 'OK', 'Nanii', m)
-  let botAdmin = {
-    botAdmin: 'Mikir dkit lah bang *BOT NYA BUKAN ADMIN*'
+  if (msg) return m.reply(msg)
 }
 
 let fs = require('fs')
