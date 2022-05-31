@@ -4,8 +4,8 @@
 
 
 let fs = require('fs')
-global.owner = ['6289625556161','62896255561613'] // Letakan nomor kamu disini
-global.prems = ['6289625556161','601164215501','60166408295','601161197507','601156232697','601172962735']
+global.owner = ['6285822347358','6285822347358'] // Letakan nomor kamu disini
+global.prems = ['6285822347358','6285822347358','6285822347358','6285822347358','6285822347358','6285822347358']
 global.APIs = { // API Prefix
   // nama: 'https://website'
   hardianto: 'https://hardianto-chan.herokuapp.com',
@@ -42,14 +42,14 @@ global.APIKeys = { // APIKey nya disini
 }
 
 // Sticker WM
-global.packname = 'ZeusBotz'
-global.author = 'ZeusBotz'
+global.packname = 'ArullBotz'
+global.author = 'ArullBotz'
 
 global.wait = '「 ⏱️ 」Harap tunggu...'
-global.botwm = 'ZeusBotz'
+global.botwm = 'ArullBotz'
 global.eror = '「❗」Server ERROR!'
 global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
-global.watermark = '© Zeus Botz' //change the watermark 
+global.watermark = '© ArullBotz' //change the watermark 
 global.image = 'https://telegra.ph/file/0bdd84bd5a8099a789828.jpg' //change the image
 global.thumbfoto = 'https://telegra.ph/file/0bdd84bd5a8099a789828.jpg'
 
@@ -59,7 +59,7 @@ global.kandang = 'https://telegra.ph/file/67a6ee607d03a4e52757d.jpg'
 global.kolam = 'https://telegra.ph/file/5aa5dfa3394477e11fb18.jpg'
 global.thanks = 'https://telegra.ph/file/01917f7782b70de8f418d.jpg'
 
-global.multiplier = 999 // Semakin tinggi, semakin sulit naik level
+global.multiplier = 9999 // Semakin tinggi, semakin sulit naik level
 
 let chalk = require('chalk')
 let file = require.resolve(__filename)
